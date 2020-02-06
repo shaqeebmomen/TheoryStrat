@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TheoryStrat</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="title_cards">Card</string>
+    <string name="title_matches">Matches</string>
+    <string name="title_card_maker">Card Maker</string>
+    <string name="title_teams">Teams</string>
+</resources>
