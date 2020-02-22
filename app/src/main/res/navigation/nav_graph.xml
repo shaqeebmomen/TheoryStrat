@@ -2,57 +2,55 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/welcomeNav"
     app:startDestination="@id/welcomePage">
 
     <fragment
         android:id="@+id/welcomePage"
-        android:name="com.theorystrat.Fragments.WelcomePage"
+        android:name="com.theorystrat.Fragments.WelcomePageFragment"
         android:label="fragment_welcome_page"
-        tools:layout="@layout/fragment_welcome_page" >
+        tools:layout="@layout/fragment_welcome_page">
         <action
-            android:id="@+id/action_welcomePage_to_matchCardSelector"
-            app:destination="@id/matchCardSelector"
+            android:id="@+id/action_welcomePage_to_mainNav"
+            app:destination="@id/mainNav"
             app:popUpTo="@id/welcomePage"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
-    <fragment
-        android:id="@+id/matchCardSelector"
-        android:name="com.theorystrat.Fragments.MatchCardSelector"
-        android:label="fragment_match_card_selector"
-        tools:layout="@layout/fragment_match_card_selector" >
-        <action
-            android:id="@+id/action_matchCardSelector_to_matchCardDisplay"
-            app:destination="@id/matchCardDisplay" />
-    </fragment>
-    <fragment
-        android:id="@+id/matchCardDisplay"
-        android:name="com.theorystrat.Fragments.MatchCardDisplay"
-        android:label="fragment_match_card_display"
-        tools:layout="@layout/fragment_match_card_display" />
-    <fragment
-        android:id="@+id/matchCardMaker"
-        android:name="com.theorystrat.Fragments.MatchCardMaker"
-        android:label="fragment_match_card_maker"
-        tools:layout="@layout/fragment_match_card_maker" >
-        <action
-            android:id="@+id/action_matchCardMaker_to_matchCardDisplay"
-            app:destination="@id/matchCardDisplay" />
-    </fragment>
-    <fragment
-        android:id="@+id/teamSummary"
-        android:name="com.theorystrat.Fragments.TeamSummary"
-        android:label="fragment_team_summary"
-        tools:layout="@layout/fragment_team_summary" />
-    <fragment
-        android:id="@+id/teamMatches"
-        android:name="com.theorystrat.Fragments.TeamMatches"
-        android:label="fragment_team_matches"
-        tools:layout="@layout/fragment_team_matches" />
-    <fragment
-        android:id="@+id/teamStats"
-        android:name="com.theorystrat.Fragments.TeamStats"
-        android:label="fragment_team_stats"
-        tools:layout="@layout/fragment_team_stats" />
+    <navigation
+        android:id="@+id/mainNav"
+        app:startDestination="@id/matchCardSelector">
+        <fragment
+            android:id="@+id/matchCardMaker"
+            android:name="com.theorystrat.Fragments.MatchCardMakerFragment"
+            android:label="fragment_match_card_maker"
+            tools:layout="@layout/fragment_match_card_maker">
+            <action
+                android:id="@+id/action_matchCardMaker_to_matchCardDisplay"
+                app:destination="@id/matchCardDisplay" />
+        </fragment>
+        <fragment
+            android:id="@+id/matchCardDisplay"
+            android:name="com.theorystrat.Fragments.MatchCardDisplayFragment"
+            android:label="fragment_match_card_display"
+            tools:layout="@layout/fragment_match_card_display" />
+        <fragment
+            android:id="@+id/matchCardSelector"
+            android:name="com.theorystrat.Fragments.MatchCardSelectorFragment"
+            android:label="fragment_match_card_selector"
+            tools:layout="@layout/fragment_match_card_selector">
+            <action
+                android:id="@+id/action_matchCardSelector_to_matchCardDisplay"
+                app:destination="@id/matchCardDisplay" />
+        </fragment>
+        <fragment
+            android:id="@+id/teams"
+            android:name="com.theorystrat.Fragments.TeamsFragment"
+            android:label="fragment_teams"
+            tools:layout="@layout/fragment_teams" />
+        <fragment
+            android:id="@+id/matches"
+            android:name="com.theorystrat.Fragments.MatchesFragment"
+            android:label="fragment_matches"
+            tools:layout="@layout/fragment_matches" />
+    </navigation>
 </navigation>

@@ -13,12 +13,12 @@
         android:title="@string/title_card_maker" />
 
     <item
-        android:id="@+id/teamMatches"
+        android:id="@+id/matches"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_matches" />
 
     <item
-        android:id="@+id/teamSummary"
+        android:id="@+id/teams"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_teams" />
 

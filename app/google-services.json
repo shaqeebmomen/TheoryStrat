@@ -1,0 +1,199 @@
+{
+  "project_info": {
+    "project_number": "27731604085",
+    "firebase_url": "https://theory-scout.firebaseio.com",
+    "project_id": "theory-scout",
+    "storage_bucket": "theory-scout.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27731604085:android:b53901047b3666b8",
+        "android_client_info": {
+          "package_name": "com.controls.theory6.theoryscout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtpLR7NEQz9RGlUeOj2UB_zu5jW7E1K_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "27731604085-6e698v3n0m5pb0ruama89l3gft78qsja.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.theoryscoutmaster"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27731604085:android:c83a6be5ae6e105f",
+        "android_client_info": {
+          "package_name": "com.rickhansenrobotics.theoryscoutclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtpLR7NEQz9RGlUeOj2UB_zu5jW7E1K_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "27731604085-6e698v3n0m5pb0ruama89l3gft78qsja.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.theoryscoutmaster"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27731604085:android:4d24d2407b3b3406",
+        "android_client_info": {
+          "package_name": "com.theory6.excelexporter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtpLR7NEQz9RGlUeOj2UB_zu5jW7E1K_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "27731604085-6e698v3n0m5pb0ruama89l3gft78qsja.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.theoryscoutmaster"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27731604085:android:7c1157e20c7037cdc67e3c",
+        "android_client_info": {
+          "package_name": "com.theoryscoutmaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtpLR7NEQz9RGlUeOj2UB_zu5jW7E1K_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "27731604085-6e698v3n0m5pb0ruama89l3gft78qsja.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.theoryscoutmaster"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27731604085:android:ffe046321b5cf98dc67e3c",
+        "android_client_info": {
+          "package_name": "com.theorystrat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27731604085-b7n02hq9viiu6qrdjc0mlhd7ovltfb7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.theorystrat",
+            "certificate_hash": "8e7644354d34d94049bd6069941d9de1de1ca68a"
+          }
+        },
+        {
+          "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtpLR7NEQz9RGlUeOj2UB_zu5jW7E1K_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27731604085-bu87cacq0222mnc9uco6pu3sk1f2mu3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "27731604085-6e698v3n0m5pb0ruama89l3gft78qsja.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.theoryscoutmaster"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

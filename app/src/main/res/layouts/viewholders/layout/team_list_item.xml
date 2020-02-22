@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team_list_item_num"
+        android:text="####"
+        android:layout_alignParentStart="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@id/team_list_item_city" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team_list_item_name"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/team_list_item_num"
+        android:layout_marginStart="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="TEAM NAME" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team_list_item_city"
+        android:layout_alignStart="@id/team_list_item_name"
+        android:layout_below="@id/team_list_item_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="CITY" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team_list_details_btn"
+        android:layout_alignParentEnd="true"
+        android:text="#"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:drawableEnd="@drawable/ic_keyboard_arrow_right_white_24dp"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:background="@color/colorPrimary"
+
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/team_list_item_num"
+
+
+        />
+
+
+</RelativeLayout>
