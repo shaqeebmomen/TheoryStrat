@@ -35,6 +35,7 @@ public class Roster {
         }
         // If we haven't made this team yet, add it then sort the list in order
         else {
+            nums.add(team.getTeamNum());
             output.add(team);
             Collections.sort(output);
 
@@ -42,6 +43,15 @@ public class Roster {
         // Now that output properly represents the list we want to use, publish it as the live data
         teamList.setValue(output);
 
+    }
+
+    public void setTeamList(ArrayList<Team> teamList) {
+        this.teamList.setValue(teamList);
+        this.nums.clear();
+        for (Team t :
+                this.teamList.getValue()) {
+            nums.add(t.getTeamNum());
+        }
     }
 
     // Exposes the live data to be passed up to the UI

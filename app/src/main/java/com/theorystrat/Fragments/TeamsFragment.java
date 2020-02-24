@@ -60,10 +60,13 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
         // ViewModel
         teamsViewModel = new ViewModelProvider(requireActivity()).get(TeamsViewModel.class);
 
-        teamsViewModel.getTeams().observe(getViewLifecycleOwner(), new Observer<ArrayList<Team>>() {
+        teamsViewModel.getTeams().observe(this.getViewLifecycleOwner(), new Observer<ArrayList<Team>>() {
             @Override
             public void onChanged(ArrayList<Team> teams) {
-
+                Log.d(TAG, "teamsList changed");
+                teamListAdapter.setTeams(teams);
+                Log.d(TAG, "adapter count: " + teamListAdapter.getItemCount());
+                teamListAdapter.notifyDataSetChanged();
             }
         });
 

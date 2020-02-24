@@ -24,6 +24,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamItemHolder> {
     // Constructor to pass the implementation into
     public TeamListAdapter(OnTeamListener onTeamListener) {
         this.onTeamListener = onTeamListener;
+        setHasStableIds(true);
 
     }
 
@@ -54,6 +55,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamItemHolder> {
 
 
     public void setTeams(ArrayList<Team> teams) {
-        this.teams = teams;
+        this.teams.clear();
+        this.teams.addAll(teams);
     }
 }

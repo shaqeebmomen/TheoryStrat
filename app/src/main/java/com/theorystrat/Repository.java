@@ -16,6 +16,7 @@ import com.theorystrat.DataModels.Team;
 import com.theorystrat.DataModels.Tourny;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static android.content.ContentValues.TAG;
 
@@ -26,9 +27,7 @@ public class Repository {
     private static Repository mInstance;
     private MutableLiveData<Tourny> tournyLiveData;
     private MutableLiveData<ArrayList<String>> eventList;
-    //    private ArrayList<String> teamNumList = new ArrayList<>(); // Holds a every team # we've made an object for easier tracking
-//    private MutableLiveData<ArrayList<Team>> teamList = new MutableLiveData<>();
-    private Roster roster = new Roster();
+    private Roster roster;
     private String selectedEvent;
     private DataSnapshot latestSnap; //Top Level Reference
 
@@ -50,6 +49,7 @@ public class Repository {
 
         // Add Listener
         //TODO get this data only once and make a new listener for tournament child
+        // TODO deal with a cleared comp
         firebaseDB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -65,6 +65,7 @@ public class Repository {
                     }
                     eventList.postValue(mEventList);
                     latestSnap = dataSnapshot;
+                    refreshTeamList();
                 }
                 //TODO make this more descriptive once more listeners are added
                 catch (NullPointerException e) {
@@ -108,22 +109,28 @@ public class Repository {
         // If there is an event selected
         if (selectedEvent != null) {
             // For every direct child within the currently held snapshot
+            ArrayList<Team> update = new ArrayList<>();
             for (DataSnapshot teamSnap : latestSnap.child(selectedEvent).getChildren()
             ) {
-                // Get the key of the child (the team #)
-                Log.d(TAG, "refreshTeamList: " + teamSnap.getKey());
-                // If we've already made an object for this team, dont make another one (done by the roster class)
-                if (!roster.contains(teamSnap.getKey())) {
                     // Create a new team instance an populate its data
                     Team newTeam = new Team(teamSnap.getKey());
                     // Populate stats
-                    roster.addTeam(newTeam);
-                }
+
+                // Add it to the holder of the output
+                update.add(newTeam);
+                Collections.sort(update);
+
             }
+            // Push the new list at once;
+            roster.setTeamList(update);
         }
         // No event selected, display an error message
         else {
             Log.d(TAG, "refreshTeamList: NO EVENT SELECTED");
+        }
+        for (Team t :
+                roster.getTeamList().getValue()) {
+            Log.d(TAG, "refreshTeamList: " + t.getTeamNum());
         }
     }
 
