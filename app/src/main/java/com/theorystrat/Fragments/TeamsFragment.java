@@ -61,7 +61,6 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
                 teamListAdapter.submitList(teams);
             }
         });
-
         // Recycler View
         // Link the view
         recyclerView = view.findViewById(R.id.teams_list_view);
@@ -73,7 +72,6 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
         recyclerView.setAdapter(teamListAdapter);
         // Fill the adapter with the list of teams
         teamListAdapter.submitList(teamsViewModel.getTeams().getValue());
-
     }
 
     // Overriding the onClick() method for the interface defined in the adapter

@@ -53,7 +53,7 @@ public class Repository {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<String> mEventList = new ArrayList<>();
-                // If an event hasn't been selected, refresh the list of events
+                // Refresh the list of events
                 try {
                     // Clear the event list then refill it with the event list
                     mEventList.clear();
@@ -110,7 +110,7 @@ public class Repository {
             ArrayList<Team> update = new ArrayList<>();
             for (DataSnapshot teamSnap : latestSnap.child(selectedEvent).getChildren()
             ) {
-//                Log.d(TAG, "refreshTeamList: " + teamSnap.getKey());
+
                 // Create a new team instance an populate its data
                 Team newTeam = new Team(teamSnap.getKey());
                 // Populate stats
@@ -118,8 +118,6 @@ public class Repository {
                 newTeam.setDataCount((int) teamSnap.getChildrenCount());
                 // Add it to the holder of the output
                 update.add(newTeam);
-
-
             }
             // Push the new list at once;
             Collections.sort(update);
