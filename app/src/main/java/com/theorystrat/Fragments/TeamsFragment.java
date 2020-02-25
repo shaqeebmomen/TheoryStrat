@@ -1,11 +1,9 @@
 package com.theorystrat.Fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,11 +36,9 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -62,9 +58,7 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
         teamsViewModel.getTeams().observe(this.getViewLifecycleOwner(), new Observer<ArrayList<Team>>() {
             @Override
             public void onChanged(ArrayList<Team> teams) {
-                Log.d(TAG, "teamsList changed");
-                teamListAdapter.setTeams(teams);
-                Log.d(TAG, "adapter count: " + teamListAdapter.getItemCount());
+                teamListAdapter.submitList(teams);
             }
         });
 
@@ -78,14 +72,13 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
         // Attach the adapter to the Recycler View
         recyclerView.setAdapter(teamListAdapter);
         // Fill the adapter with the list of teams
-        teamListAdapter.setTeams(teamsViewModel.getTeams().getValue());
-
+        teamListAdapter.submitList(teamsViewModel.getTeams().getValue());
 
     }
 
+    // Overriding the onClick() method for the interface defined in the adapter
     @Override
-    public void onTeamClick(int pos, View v) {
-        TextView t = v.findViewById(R.id.team_list_item_num);
-        Log.d(TAG, "onTeamClick: " + t.getText());
+    public void onClick() {
+
     }
 }

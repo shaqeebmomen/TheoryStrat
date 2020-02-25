@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.theorystrat.Adapters.TeamListAdapter.OnTeamListener;
+import com.theorystrat.Adapters.TeamListAdapter;
 import com.theorystrat.R;
 
 public class TeamItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -17,27 +17,21 @@ public class TeamItemHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView teamName;
 
     private Button seeDetailsBtn;
+    private TeamListAdapter.OnTeamListener onTeamListener;
 
 
-    public TeamItemHolder(@NonNull View itemView, OnTeamListener onTeamListener) {
+    public TeamItemHolder(@NonNull View itemView, TeamListAdapter.OnTeamListener onTeamListener) {
         super(itemView);
-
+        this.onTeamListener = onTeamListener;
         this.teamNum = itemView.findViewById(R.id.team_list_item_num);
         this.teamCity = itemView.findViewById(R.id.team_list_item_city);
         this.teamName = itemView.findViewById(R.id.team_list_item_name);
 
         this.seeDetailsBtn = itemView.findViewById(R.id.team_list_details_btn);
         seeDetailsBtn.setOnClickListener(this);
+
     }
 
-    @Override
-    public void onClick(View v) {
-        //TODO pass the selected team into the next fragment
-        //Trigger the viewmodel to retrieve team-specific data from repository
-        //navigate to the team summary fragment
-
-        //** the implemented interface is now also available to use in here
-    }
 
 
     public void setTeamNum(String num) {
@@ -50,5 +44,14 @@ public class TeamItemHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     public void setTeamName(String name) {
         teamName.setText(name);
+    }
+
+    public void setDataCount(String s) {
+        this.seeDetailsBtn.setText(s);
+    }
+
+    @Override
+    public void onClick(View v) {
+        onTeamListener.onClick();
     }
 }

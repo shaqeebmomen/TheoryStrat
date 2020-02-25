@@ -5,29 +5,46 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 
 import com.theorystrat.DataModels.Team;
 import com.theorystrat.R;
 import com.theorystrat.ViewHolders.TeamItemHolder;
 
-import java.util.ArrayList;
-
-
-public class TeamListAdapter extends RecyclerView.Adapter<TeamItemHolder> {
+// Using List Adapter to provide animations and load items more efficiently
+public class TeamListAdapter extends ListAdapter<Team, TeamItemHolder> {
     private static final String TAG = "TeamListAdapter";
 
-    private ArrayList<Team> teams;
     private OnTeamListener onTeamListener;
 
 
-    // Constructor to pass the implementation into
-    public TeamListAdapter(OnTeamListener onTeamListener) {
-        this.onTeamListener = onTeamListener;
-        this.teams = new ArrayList<>();
-//        setHasStableIds(true);
 
+    public TeamListAdapter(OnTeamListener onTeamListener) {
+        super(DIFF_CALLBACK);
+        this.onTeamListener = onTeamListener;
     }
+
+    // Defining the methods to check differences locally
+    private static final DiffUtil.ItemCallback<Team> DIFF_CALLBACK = new DiffUtil.ItemCallback<Team>() {
+
+        // Make this method return true when the compared items refer to the same team
+        @Override
+        public boolean areItemsTheSame(@NonNull Team oldItem, @NonNull Team newItem) {
+            return oldItem.getTeamNum() == newItem.getTeamNum();
+        }
+
+
+        // Make this method return true when the compared items have the same internal data
+        @Override
+        public boolean areContentsTheSame(@NonNull Team oldItem, @NonNull Team newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
+
+
+
+
 
     @NonNull
     @Override
@@ -41,24 +58,15 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamItemHolder> {
     @Override
     public void onBindViewHolder(@NonNull TeamItemHolder holder, int position) {
         // Bind data to each view
-        holder.setTeamNum(teams.get(position).getTeamNum());
+        // getItem() is a method of the superclass that will return the list we passed into this
+        holder.setTeamNum(getItem(position).getTeamNum());
+        holder.setDataCount(Integer.toString(getItem(position).getDataCount()));
         //TODO add the field for city and team name in the teams data model then bind here
     }
 
-    @Override
-    public int getItemCount() {
-        return teams.size();
-    }
 
     public interface OnTeamListener {
-        void onTeamClick(int pos, View v);
+        public void onClick();
     }
 
-
-    public void setTeams(ArrayList<Team> teams) {
-//        this.teams.clear();
-//        this.teams.addAll(teams);
-        this.teams = teams;
-        notifyDataSetChanged();
-    }
 }

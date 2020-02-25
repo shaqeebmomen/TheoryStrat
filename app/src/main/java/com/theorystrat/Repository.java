@@ -71,7 +71,6 @@ public class Repository {
                     Log.e(TAG, "onDataChange:", e);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: " + databaseError.getMessage());
@@ -116,6 +115,7 @@ public class Repository {
                 Team newTeam = new Team(teamSnap.getKey());
                 // Populate stats
 
+                newTeam.setDataCount((int) teamSnap.getChildrenCount());
                 // Add it to the holder of the output
                 update.add(newTeam);
 
@@ -123,20 +123,13 @@ public class Repository {
             }
             // Push the new list at once;
             Collections.sort(update);
-            for (Team t :
-                    update) {
-                Log.d(TAG, "refreshTeamList: " + t.getTeamNum());
-            }
             roster.setTeamList(update);
         }
         // No event selected, display an error message
         else {
             Log.d(TAG, "refreshTeamList: NO EVENT SELECTED");
         }
-//        for (Team t :
-//                roster.getTeamList().getValue()) {
-//            Log.d(TAG, "refreshTeamList: " + t.getTeamNum());
-//        }
+
     }
 
     // Letting the ArrayList of our Team objects bubble up
