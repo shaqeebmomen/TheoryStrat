@@ -13,7 +13,7 @@ this allows for abstraction behind keeping track of the teams for an event and n
 The team numbers are kept in one and the Team object instances in the other, both lists are kept in the same order
  */
 public class Roster {
-
+    private static final String TAG = "Roster";
     ArrayList<String> nums;
     MutableLiveData<ArrayList<Team>> teamList;
 

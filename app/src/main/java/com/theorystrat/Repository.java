@@ -18,11 +18,10 @@ import com.theorystrat.DataModels.Tourny;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static android.content.ContentValues.TAG;
-
 
 //TODO add retrofit to call TBA apiV3 and get team info
 public class Repository {
+    private static final String TAG = "Repository";
 
     private static Repository mInstance;
     private MutableLiveData<Tourny> tournyLiveData;
@@ -112,26 +111,32 @@ public class Repository {
             ArrayList<Team> update = new ArrayList<>();
             for (DataSnapshot teamSnap : latestSnap.child(selectedEvent).getChildren()
             ) {
-                    // Create a new team instance an populate its data
-                    Team newTeam = new Team(teamSnap.getKey());
-                    // Populate stats
+//                Log.d(TAG, "refreshTeamList: " + teamSnap.getKey());
+                // Create a new team instance an populate its data
+                Team newTeam = new Team(teamSnap.getKey());
+                // Populate stats
 
                 // Add it to the holder of the output
                 update.add(newTeam);
-                Collections.sort(update);
+
 
             }
             // Push the new list at once;
+            Collections.sort(update);
+            for (Team t :
+                    update) {
+                Log.d(TAG, "refreshTeamList: " + t.getTeamNum());
+            }
             roster.setTeamList(update);
         }
         // No event selected, display an error message
         else {
             Log.d(TAG, "refreshTeamList: NO EVENT SELECTED");
         }
-        for (Team t :
-                roster.getTeamList().getValue()) {
-            Log.d(TAG, "refreshTeamList: " + t.getTeamNum());
-        }
+//        for (Team t :
+//                roster.getTeamList().getValue()) {
+//            Log.d(TAG, "refreshTeamList: " + t.getTeamNum());
+//        }
     }
 
     // Letting the ArrayList of our Team objects bubble up

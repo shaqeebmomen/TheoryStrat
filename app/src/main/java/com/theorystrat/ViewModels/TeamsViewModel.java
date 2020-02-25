@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class TeamsViewModel extends ViewModel {
-
+    private static final String TAG = "TeamsViewModel";
     private Repository repo;
 
     public TeamsViewModel() {

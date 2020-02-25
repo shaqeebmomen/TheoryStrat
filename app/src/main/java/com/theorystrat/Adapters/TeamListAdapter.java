@@ -15,16 +15,17 @@ import java.util.ArrayList;
 
 
 public class TeamListAdapter extends RecyclerView.Adapter<TeamItemHolder> {
+    private static final String TAG = "TeamListAdapter";
 
-
-    private ArrayList<Team> teams = new ArrayList<>();
+    private ArrayList<Team> teams;
     private OnTeamListener onTeamListener;
 
 
     // Constructor to pass the implementation into
     public TeamListAdapter(OnTeamListener onTeamListener) {
         this.onTeamListener = onTeamListener;
-        setHasStableIds(true);
+        this.teams = new ArrayList<>();
+//        setHasStableIds(true);
 
     }
 
@@ -55,7 +56,9 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamItemHolder> {
 
 
     public void setTeams(ArrayList<Team> teams) {
-        this.teams.clear();
-        this.teams.addAll(teams);
+//        this.teams.clear();
+//        this.teams.addAll(teams);
+        this.teams = teams;
+        notifyDataSetChanged();
     }
 }

@@ -14,7 +14,7 @@ This class is the view model that will contain the data about the chosen tournam
 
 //TODO move the iterations through the firebase snapshots to here from the repository
 public class TournyViewModel extends ViewModel {
-
+    private static final String TAG = "TournyViewModel";
 
     private Repository repo;
 

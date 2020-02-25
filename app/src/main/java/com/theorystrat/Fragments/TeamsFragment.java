@@ -22,10 +22,9 @@ import com.theorystrat.ViewModels.TeamsViewModel;
 
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
-
 
 public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamListener {
+    private static final String TAG = "TeamsFragment";
 
     // ViewModel
     private TeamsViewModel teamsViewModel;
@@ -66,7 +65,6 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
                 Log.d(TAG, "teamsList changed");
                 teamListAdapter.setTeams(teams);
                 Log.d(TAG, "adapter count: " + teamListAdapter.getItemCount());
-                teamListAdapter.notifyDataSetChanged();
             }
         });
 
@@ -77,10 +75,10 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         // Create the adapter
         teamListAdapter = new TeamListAdapter(this);
-        // Fill the adapter with the list of teams
-        teamListAdapter.setTeams(teamsViewModel.getTeams().getValue());
         // Attach the adapter to the Recycler View
         recyclerView.setAdapter(teamListAdapter);
+        // Fill the adapter with the list of teams
+        teamListAdapter.setTeams(teamsViewModel.getTeams().getValue());
 
 
     }
