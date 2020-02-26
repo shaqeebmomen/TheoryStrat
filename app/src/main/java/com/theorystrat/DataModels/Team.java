@@ -9,6 +9,7 @@ package com.theorystrat.DataModels;
 import androidx.annotation.Nullable;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class Team implements Comparable<Team> {
 
@@ -17,6 +18,7 @@ public class Team implements Comparable<Team> {
     //    private String teamCity;
 //    private String teamName;
     private int dataCount;
+    private ArrayList<Match> matches;
 
     /* AUTO DATA */
 //    private String startingPos;
@@ -96,6 +98,7 @@ public class Team implements Comparable<Team> {
 
     public Team(String teamNum) {
         this.teamNum = teamNum;
+        this.matches = new ArrayList<>();
 
     }
 
@@ -115,7 +118,13 @@ public class Team implements Comparable<Team> {
         this.dataCount = dataCount;
     }
 
+    public void addMatch(Match match) {
+        this.matches.add(match);
+    }
 
+    public void setMatches(ArrayList<Match> matches) {
+        this.matches = matches;
+    }
     // Object method overrides
 
     @Override

@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.theorystrat.DataModels.Match;
 import com.theorystrat.DataModels.Roster;
 import com.theorystrat.DataModels.Team;
 import com.theorystrat.DataModels.Tourny;
@@ -71,6 +72,7 @@ public class Repository {
                     Log.e(TAG, "onDataChange:", e);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: " + databaseError.getMessage());
@@ -115,6 +117,10 @@ public class Repository {
                 Team newTeam = new Team(teamSnap.getKey());
                 // Populate stats
 
+                for (DataSnapshot matchSnap :
+                        teamSnap.getChildren()) {
+                    newTeam.addMatch(matchSnap.getValue(Match.class));
+                }
                 newTeam.setDataCount((int) teamSnap.getChildrenCount());
                 // Add it to the holder of the output
                 update.add(newTeam);
