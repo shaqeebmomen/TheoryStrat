@@ -87,7 +87,7 @@ public class Repository {
     }
 
 
-    //TODO do we need to figure out the schedule for this all to work?
+    //TODO do we need to figure out the schedule for this all to work? or dont make a tourny obj and just hold a list of comp keys
 
     // Sets the event once its selected and takes care of creating the tourny object if necessary
     public void setSelectedEvent(String s) {
@@ -116,12 +116,12 @@ public class Repository {
                 // Create a new team instance an populate its data
                 Team newTeam = new Team(teamSnap.getKey());
                 // Populate stats
-
                 for (DataSnapshot matchSnap :
                         teamSnap.getChildren()) {
                     newTeam.addMatch(matchSnap.getValue(Match.class));
                 }
                 newTeam.setDataCount((int) teamSnap.getChildrenCount());
+
                 // Add it to the holder of the output
                 update.add(newTeam);
             }
@@ -135,6 +135,7 @@ public class Repository {
         }
 
     }
+
 
     // Letting the ArrayList of our Team objects bubble up
     public LiveData<ArrayList<Team>> getTeams() {

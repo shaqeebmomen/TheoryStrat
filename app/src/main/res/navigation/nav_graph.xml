@@ -46,11 +46,25 @@
             android:id="@+id/teams"
             android:name="com.theorystrat.Fragments.TeamsFragment"
             android:label="fragment_teams"
-            tools:layout="@layout/fragment_teams" />
+            tools:layout="@layout/fragment_teams">
+            <action
+                android:id="@+id/action_teams_to_navigation"
+                app:destination="@id/teamNav" />
+        </fragment>
         <fragment
             android:id="@+id/matches"
             android:name="com.theorystrat.Fragments.MatchesFragment"
             android:label="fragment_matches"
             tools:layout="@layout/fragment_matches" />
+        <navigation
+            android:id="@+id/teamNav"
+            app:startDestination="@id/teamDisplayFragment">
+
+            <fragment
+                android:id="@+id/teamDisplayFragment"
+                android:name="com.theorystrat.Fragments.TeamDisplayFragment"
+                android:label="fragment_team_display"
+                tools:layout="@layout/fragment_team_display" />
+        </navigation>
     </navigation>
 </navigation>

@@ -125,8 +125,9 @@ public class Team implements Comparable<Team> {
     public void setMatches(ArrayList<Match> matches) {
         this.matches = matches;
     }
-    // Object method overrides
 
+
+    // Object method overrides
     @Override
     public int compareTo(Team o) {
         return Integer.valueOf(this.teamNum).compareTo(Integer.valueOf(o.teamNum));

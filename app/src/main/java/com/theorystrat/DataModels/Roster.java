@@ -59,11 +59,4 @@ public class Roster {
         return teamList;
     }
 
-    public boolean contains(Team team) {
-        return contains(team.getTeamNum());
-    }
-
-    public boolean contains(String teamNum) {
-        return nums.contains(teamNum);
-    }
 }

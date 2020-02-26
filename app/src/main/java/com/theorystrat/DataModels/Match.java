@@ -6,9 +6,7 @@ import java.util.Map;
 
 public class Match {
 
-    // Public constructor with no args for firebase
-
-
+    // Fields mapped to data from firebase
     private int matchNumber;
     private int teamNumber;
     private String alliance;
@@ -20,9 +18,12 @@ public class Match {
     private String startingPosition;
     private String comments;
 
+    // Fields processed for display
+
 
     // Required no argument instructor
     public Match() {
+        initialize();
     }
 
     public Match(int matchNumber, int teamNumber, String alliance, String scoutName, int initiationLine, List<Map<String, Object>> autoTasks, List<Map<String, Object>> teleTasks, Map<String, Integer> endgameTasks, String startingPosition, String comments) {
@@ -77,5 +78,10 @@ public class Match {
 
     public String getComments() {
         return comments;
+    }
+
+
+    private void initialize() {
+
     }
 }
