@@ -43,9 +43,6 @@ public class TeamListAdapter extends ListAdapter<Team, TeamItemHolder> {
     };
 
 
-
-
-
     @NonNull
     @Override
     public TeamItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -66,7 +63,7 @@ public class TeamListAdapter extends ListAdapter<Team, TeamItemHolder> {
 
 
     public interface OnTeamListener {
-        public void onClick();
+        public void onClick(int pos, View v);
     }
 
 }

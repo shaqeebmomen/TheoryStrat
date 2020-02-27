@@ -10,9 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.theorystrat.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class TeamSummaryFragment extends Fragment {
 
 

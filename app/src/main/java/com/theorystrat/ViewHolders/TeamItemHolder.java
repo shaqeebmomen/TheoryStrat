@@ -28,7 +28,7 @@ public class TeamItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.teamName = itemView.findViewById(R.id.team_list_item_name);
 
         this.seeDetailsBtn = itemView.findViewById(R.id.team_list_details_btn);
-        seeDetailsBtn.setOnClickListener(this);
+        itemView.setOnClickListener(this);
 
     }
 
@@ -52,6 +52,6 @@ public class TeamItemHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        onTeamListener.onClick();
+        onTeamListener.onClick(getAdapterPosition(), v);
     }
 }

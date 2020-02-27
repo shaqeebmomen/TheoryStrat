@@ -4,18 +4,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.theorystrat.Adapters.TeamListAdapter;
 import com.theorystrat.DataModels.Team;
 import com.theorystrat.R;
+import com.theorystrat.ViewModels.MatchesViewModel;
 import com.theorystrat.ViewModels.TeamsViewModel;
 
 import java.util.ArrayList;
@@ -26,10 +30,14 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
 
     // ViewModel
     private TeamsViewModel teamsViewModel;
+    private MatchesViewModel matchesViewModel;
 
     // UI
     private RecyclerView recyclerView;
     private TeamListAdapter teamListAdapter;
+
+    // Navigation
+    NavController navController;
 
 
     public TeamsFragment() {
@@ -52,7 +60,10 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // ViewModel
+        // Navigaton
+        navController = Navigation.findNavController(view);
+
+        // ViewModels
         teamsViewModel = new ViewModelProvider(requireActivity()).get(TeamsViewModel.class);
 
         teamsViewModel.getTeams().observe(this.getViewLifecycleOwner(), new Observer<ArrayList<Team>>() {
@@ -61,6 +72,9 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
                 teamListAdapter.submitList(teams);
             }
         });
+
+        matchesViewModel = new ViewModelProvider(requireActivity()).get(MatchesViewModel.class);
+
         // Recycler View
         // Link the view
         recyclerView = view.findViewById(R.id.teams_list_view);
@@ -76,7 +90,9 @@ public class TeamsFragment extends Fragment implements TeamListAdapter.OnTeamLis
 
     // Overriding the onClick() method for the interface defined in the adapter
     @Override
-    public void onClick() {
-
+    public void onClick(int pos, View v) {
+        TextView teamNumTextView = v.findViewById(R.id.team_list_item_num);
+        matchesViewModel.setSelectedTeam(teamNumTextView.getText().toString());
+        navController.navigate(R.id.action_teams_to_teamDisplayFragment);
     }
 }
