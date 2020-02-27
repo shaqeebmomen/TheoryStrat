@@ -92,7 +92,6 @@ public class WelcomePageFragment extends Fragment implements TournyListAdapter.O
                 navController.navigate(R.id.action_welcomePage_to_mainNav);
                 getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
 
-
             }
         });
 

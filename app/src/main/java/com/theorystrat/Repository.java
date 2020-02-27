@@ -119,6 +119,7 @@ public class Repository {
                 for (DataSnapshot matchSnap :
                         teamSnap.getChildren()) {
                     newTeam.addMatch(matchSnap.getValue(Match.class));
+
                 }
                 newTeam.setDataCount((int) teamSnap.getChildrenCount());
 
