@@ -24,7 +24,7 @@ public class TeamDisplayFragment extends Fragment {
     private ViewPager2 viewPager;
     private TeamDisplayAdapter teamDisplaysAdapter;
     private MatchesViewModel matchesViewModel;
-
+    private static final String TAG = "TeamDisplayFragment";
 
     public TeamDisplayFragment() {
         // Required empty public constructor
@@ -65,6 +65,7 @@ public class TeamDisplayFragment extends Fragment {
                         tab.setText("TeamSummary");
                         break;
                     case 1:
+
                         tab.setText("Matches");
                         break;
                 }

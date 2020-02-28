@@ -26,7 +26,8 @@ public class Repository {
 
     private static Repository mInstance;
     private MutableLiveData<Tourny> tournyLiveData;
-    private MutableLiveData<ArrayList<String>> eventList;
+    private MutableLiveData<ArrayList<String>> events;
+    private MutableLiveData<ArrayList<Match>> matches;
     private Roster roster;
     private String selectedEvent;
     private DataSnapshot latestSnap; //Top Level Reference
@@ -40,7 +41,7 @@ public class Repository {
 
     private Repository() {
         tournyLiveData = new MutableLiveData<>();
-        eventList = new MutableLiveData<>();
+        events = new MutableLiveData<>();
         roster = new Roster();
 
 //        // Enable Local Persistence
@@ -63,7 +64,7 @@ public class Repository {
                         mEventList.add(child.getKey());
                         Log.d(TAG, "onDataChange: " + child.getKey());
                     }
-                    eventList.postValue(mEventList);
+                    events.postValue(mEventList);
                     latestSnap = dataSnapshot;
                     refreshTeamList();
                 }
@@ -82,10 +83,27 @@ public class Repository {
 
     }
 
-    public LiveData<ArrayList<String>> getEventList() {
-        return eventList;
+    // Getters
+
+    public LiveData<ArrayList<String>> getEvents() {
+        return events;
     }
 
+    // Letting the ArrayList of our Team objects bubble up
+    public LiveData<ArrayList<Team>> getTeams() {
+
+        return roster.getTeamList();
+    }
+
+    public LiveData<Tourny> getTourny() {
+        return tournyLiveData;
+    }
+
+    public MutableLiveData<ArrayList<Match>> getMatches() {
+        return matches;
+    }
+
+    // Setters
 
     //TODO do we need to figure out the schedule for this all to work? or dont make a tourny obj and just hold a list of comp keys
 
@@ -100,6 +118,10 @@ public class Repository {
             currentT.setEventName(selectedEvent);
             tournyLiveData.setValue(currentT);
         }
+    }
+
+    public void setMatches(ArrayList<Match> matches) {
+        this.matches.setValue(matches);
     }
 
     // TODO put this method into a listener, specific to the competition
@@ -138,15 +160,8 @@ public class Repository {
     }
 
 
-    // Letting the ArrayList of our Team objects bubble up
-    public LiveData<ArrayList<Team>> getTeams() {
 
-        return roster.getTeamList();
-    }
 
-    public LiveData<Tourny> getTourny() {
-        return tournyLiveData;
-    }
 
 
 }

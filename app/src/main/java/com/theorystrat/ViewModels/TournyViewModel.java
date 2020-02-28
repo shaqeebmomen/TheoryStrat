@@ -31,7 +31,7 @@ public class TournyViewModel extends ViewModel {
 
 
     public LiveData<ArrayList<String>> getEventList() {
-        return repo.getEventList();
+        return repo.getEvents();
     }
 
     public void setSelectedEvent(String s) {

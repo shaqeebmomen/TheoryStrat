@@ -1,6 +1,7 @@
 package com.theorystrat.ViewModels;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.theorystrat.DataModels.Match;
@@ -12,13 +13,15 @@ public class MatchesViewModel extends ViewModel {
     private static final String TAG = "MatchesViewModel";
 
     private LiveData<ArrayList<Match>> matches;
-    private LiveData<ArrayList<Match>> selectedTeamMatches;
+    private MutableLiveData<ArrayList<Match>> selectedTeamMatches;
     private Repository repo;
     private String selectedTeam;
 
 
     public MatchesViewModel() {
         this.repo = Repository.getInstance();
+        this.matches = repo.getMatches();
+
     }
 
 
@@ -34,7 +37,10 @@ public class MatchesViewModel extends ViewModel {
         return selectedTeam;
     }
 
-    public void setSelectedTeam(String selectedTeam) {
+    public void setSelectedTeam(final String selectedTeam) {
         this.selectedTeam = selectedTeam;
+//        ArrayList<Match> update = matches.getValue();
+//        update.removeIf(match -> String.valueOf(match.getTeamNumber()) != selectedTeam);
+//        selectedTeamMatches.setValue(update);
     }
 }

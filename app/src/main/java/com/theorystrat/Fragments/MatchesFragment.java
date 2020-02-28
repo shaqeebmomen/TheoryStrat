@@ -9,21 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.theorystrat.DataModels.Match;
 import com.theorystrat.R;
 import com.theorystrat.ViewModels.MatchesViewModel;
-
-import java.util.ArrayList;
 
 public class MatchesFragment extends Fragment {
 
     private MatchesViewModel matchesViewModel;
 
-    private LiveData<ArrayList<Match>> matches;
 
+    private static final String TAG = "MatchesFragment";
     public MatchesFragment() {
         // Required empty public constructor
 
@@ -53,3 +49,7 @@ public class MatchesFragment extends Fragment {
         tv.setText(matchesViewModel.getSelectedTeam());
     }
 }
+
+
+// Setters
+

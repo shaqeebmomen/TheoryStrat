@@ -24,7 +24,6 @@ public class TeamsViewModel extends ViewModel {
 
     // Setters
 
-
     // Getters
 
     // Bubble up team list to UI
