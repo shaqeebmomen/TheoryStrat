@@ -140,7 +140,12 @@ public class Repository {
                 // Populate stats
                 for (DataSnapshot matchSnap :
                         teamSnap.getChildren()) {
-                    newTeam.addMatch(matchSnap.getValue(Match.class));
+                    // Use firebase to serialize the JSON on the cloud to a local class instance
+                    Match newMatch = matchSnap.getValue(Match.class);
+                    // Process data loaded
+                    newMatch.initialize();
+                    // Add match data to newTeam
+                    newTeam.addMatch(newMatch);
 
                 }
                 newTeam.setDataCount((int) teamSnap.getChildrenCount());
