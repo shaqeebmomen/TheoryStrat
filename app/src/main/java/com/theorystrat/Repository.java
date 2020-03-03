@@ -40,9 +40,10 @@ public class Repository {
     }
 
     private Repository() {
-        tournyLiveData = new MutableLiveData<>();
-        events = new MutableLiveData<>();
-        roster = new Roster();
+        this.tournyLiveData = new MutableLiveData<>();
+        this.events = new MutableLiveData<>();
+        this.roster = new Roster();
+        this.matches = new MutableLiveData<>();
 
 //        // Enable Local Persistence
 //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -66,7 +67,7 @@ public class Repository {
                     }
                     events.postValue(mEventList);
                     latestSnap = dataSnapshot;
-                    refreshTeamList();
+                    refreshData();
                 }
                 //TODO make this more descriptive once more listeners are added
                 catch (NullPointerException e) {
@@ -99,7 +100,7 @@ public class Repository {
         return tournyLiveData;
     }
 
-    public MutableLiveData<ArrayList<Match>> getMatches() {
+    public LiveData<ArrayList<Match>> getMatches() {
         return matches;
     }
 
@@ -127,14 +128,14 @@ public class Repository {
     // TODO put this method into a listener, specific to the competition
 
     // This method is used when it is required to update and refresh the WHOLE list of teams AND their stats
-    public void refreshTeamList() {
+    public void refreshData() {
         // If there is an event selected
         if (selectedEvent != null) {
             // For every direct child within the currently held snapshot
-            ArrayList<Team> update = new ArrayList<>();
+            ArrayList<Team> teamsUpdate = new ArrayList<>();
+            ArrayList<Match> matchesUpdate = new ArrayList<>();
             for (DataSnapshot teamSnap : latestSnap.child(selectedEvent).getChildren()
             ) {
-
                 // Create a new team instance an populate its data
                 Team newTeam = new Team(teamSnap.getKey());
                 // Populate stats
@@ -146,21 +147,22 @@ public class Repository {
                     newMatch.initialize();
                     // Add match data to newTeam
                     newTeam.addMatch(newMatch);
-
+                    // Add match to the full list
+                    matchesUpdate.add(newMatch);
                 }
-                newTeam.setDataCount((int) teamSnap.getChildrenCount());
-
                 // Add it to the holder of the output
-                update.add(newTeam);
+                teamsUpdate.add(newTeam);
             }
             // Push the new list at once;
-            Collections.sort(update);
-            roster.setTeamList(update);
+            Collections.sort(teamsUpdate);
+            roster.setTeamList(teamsUpdate);
+            matches.setValue(matchesUpdate);
         }
         // No event selected, display an error message
         else {
-            Log.d(TAG, "refreshTeamList: NO EVENT SELECTED");
+            Log.d(TAG, "refreshData: NO EVENT SELECTED");
         }
+        Log.d(TAG, "refreshData: Finished");
 
     }
 

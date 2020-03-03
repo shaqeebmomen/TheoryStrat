@@ -1,5 +1,7 @@
 package com.theorystrat.ViewModels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -24,6 +26,11 @@ public class TournyViewModel extends ViewModel {
 
     }
 
+    @Override
+    protected void onCleared() {
+        Log.d(TAG, "onCleared: Tourny View Model Destroyed");
+        super.onCleared();
+    }
 
     public LiveData<Tourny> getTourny() {
         return repo.getTourny();

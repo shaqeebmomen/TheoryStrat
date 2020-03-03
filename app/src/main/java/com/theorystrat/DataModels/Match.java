@@ -12,11 +12,11 @@ public class Match {
     private static final String TAG = "Match";
 
     // Fields mapped to data from firebase
-    private int matchNumber;
-    private int teamNumber;
+    private Long matchNumber;
+    private Long teamNumber;
     private String alliance;
     private String scoutName;
-    private int initiationLine;
+    private Long initiationLine;
     private List<Map<String, Object>> autoTasks;
     private List<Map<String, Object>> teleTasks;
     private Map<String, Long> endgameTasks;
@@ -116,9 +116,14 @@ public class Match {
             }
             return null;
         }
+
+        public static ClimbTypes fromDouble(double val) {
+            return fromInt((int) val);
+        }
     }
 
     public enum DataKeys {
+        TOTAL_HIGH_AUTO,
         INTAKE_RENDEZVOUS_AUTO,
         INTAKE_FAR_TRENCH_AUTO,
         INTAKE_OPP_TRENCH_AUTO,
@@ -140,6 +145,7 @@ public class Match {
         INTAKE_OPP_SECTOR_TELE,
         INTAKE_LOADING_TELE,
         INTAKE_OPEN_FLOOR_TELE,
+        TOTAL_HIGH_TELE,
         BALLS_SCORED_CLOSE_TRENCH_TELE,
         BALLS_SCORED_FAR_TRENCH_TELE,
         BALLS_SCORED_OPEN_FLOOR_TELE,
@@ -166,7 +172,7 @@ public class Match {
 
     }
 
-    public Match(int matchNumber, int teamNumber, String alliance, String scoutName, int initiationLine, List<Map<String, Object>> autoTasks, List<Map<String, Object>> teleTasks, Map<String, Long> endgameTasks, String startingPosition, String comments) {
+    public Match(Long matchNumber, Long teamNumber, String alliance, String scoutName, Long initiationLine, List<Map<String, Object>> autoTasks, List<Map<String, Object>> teleTasks, Map<String, Long> endgameTasks, String startingPosition, String comments) {
         this.matchNumber = matchNumber;
         this.teamNumber = teamNumber;
         this.alliance = alliance;
@@ -179,11 +185,11 @@ public class Match {
         this.comments = comments;
     }
 
-    public int getMatchNumber() {
+    public Long getMatchNumber() {
         return matchNumber;
     }
 
-    public int getTeamNumber() {
+    public Long getTeamNumber() {
         return teamNumber;
     }
 
@@ -195,7 +201,7 @@ public class Match {
         return scoutName;
     }
 
-    public int getInitiationLine() {
+    public Long getInitiationLine() {
         return initiationLine;
     }
 
@@ -219,11 +225,16 @@ public class Match {
         return comments;
     }
 
+    public HashMap<DataKeys, Long> getMatchData() {
+        return matchData;
+    }
+
     @SuppressWarnings("ConstantConditions")
     public void initialize() {
-        for (DataKeys a :
+        // Set all values to 0, but non-null to allow incrementing
+        for (DataKeys key :
                 DataKeys.values()) {
-            matchData.put(a, 0L);
+            matchData.put(key, 0L);
         }
         // Inputing auto data
         if (autoTasks != null) {
@@ -258,7 +269,7 @@ public class Match {
                         }
                         break;
                     case SHOOT_HIGH:
-
+                        matchData.put(DataKeys.TOTAL_HIGH_AUTO, matchData.get(DataKeys.TOTAL_HIGH_AUTO) + shotData.get("scored"));
                         switch (location) {
                             case RENDEZVOUS_ZONE:
                                 matchData.put(DataKeys.BALLS_SCORED_RENDEZVOUS_AUTO, matchData.get(DataKeys.BALLS_SCORED_RENDEZVOUS_AUTO) + shotData.get("scored"));
@@ -332,6 +343,7 @@ public class Match {
                         }
                         break;
                     case SHOOT_HIGH:
+                        matchData.put(DataKeys.TOTAL_HIGH_TELE, matchData.get(DataKeys.TOTAL_HIGH_TELE) + shotData.get("scored"));
                         switch (location) {
                             case CLOSE_TRENCH:
                                 matchData.put(DataKeys.BALLS_SCORED_CLOSE_TRENCH_TELE, matchData.get(DataKeys.BALLS_SCORED_CLOSE_TRENCH_TELE) + shotData.get("scored"));
@@ -389,7 +401,7 @@ public class Match {
             matchData.put(DataKeys.CLIMB_SUCCESS, endgameTasks.get("success"));
         }
 
-        Log.d(TAG, "initialize: " + matchData.toString());
+//        Log.d(TAG, "initialize: " + matchData.toString());
     }
 
 

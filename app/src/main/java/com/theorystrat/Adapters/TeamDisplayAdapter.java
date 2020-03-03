@@ -6,16 +6,13 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.theorystrat.Fragments.MatchesFragment;
 import com.theorystrat.Fragments.TeamSummaryFragment;
-import com.theorystrat.ViewModels.MatchesViewModel;
 
 public class TeamDisplayAdapter extends FragmentStateAdapter {
 
-    private MatchesViewModel matchesViewModel;
     private String selectedTeam;
 
-    public TeamDisplayAdapter(@NonNull Fragment fragment, MatchesViewModel matchesViewModel) {
+    public TeamDisplayAdapter(@NonNull Fragment fragment) {
         super(fragment);
-        this.matchesViewModel = matchesViewModel;
     }
 
     @NonNull

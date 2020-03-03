@@ -85,7 +85,7 @@ public class WelcomePageFragment extends Fragment implements TournyListAdapter.O
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                // Tell ViewModel to update the list of team
-//                tournyViewModel.refreshTeamList();
+//                tournyViewModel.refreshData();
 
 
                 // Navigate to main nav

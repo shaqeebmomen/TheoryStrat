@@ -9,21 +9,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.theorystrat.Adapters.TeamDisplayAdapter;
 import com.theorystrat.R;
-import com.theorystrat.ViewModels.MatchesViewModel;
 
 
 public class TeamDisplayFragment extends Fragment {
 
     private ViewPager2 viewPager;
     private TeamDisplayAdapter teamDisplaysAdapter;
-    private MatchesViewModel matchesViewModel;
+
     private static final String TAG = "TeamDisplayFragment";
 
     public TeamDisplayFragment() {
@@ -33,7 +31,6 @@ public class TeamDisplayFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
 
@@ -49,11 +46,7 @@ public class TeamDisplayFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
 
-        // View Model
-        matchesViewModel = new ViewModelProvider(requireActivity()).get(MatchesViewModel.class);
-
-
-        teamDisplaysAdapter = new TeamDisplayAdapter(this, matchesViewModel);
+        teamDisplaysAdapter = new TeamDisplayAdapter(this);
         viewPager = view.findViewById(R.id.team_display_pager);
         viewPager.setAdapter(teamDisplaysAdapter);
         TabLayout tabLayout = view.findViewById(R.id.team_display_tabs);
@@ -71,11 +64,6 @@ public class TeamDisplayFragment extends Fragment {
                 }
             }
         }).attach();
-    }
-
-
-    private void setSelectedTeam(String teamNum) {
-        matchesViewModel.setSelectedTeam(teamNum);
     }
 
 

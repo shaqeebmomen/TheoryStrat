@@ -1,5 +1,7 @@
 package com.theorystrat.ViewModels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -13,9 +15,15 @@ public class TeamsViewModel extends ViewModel {
     private static final String TAG = "TeamsViewModel";
     private Repository repo;
 
+    @Override
+    protected void onCleared() {
+        Log.d(TAG, "onCleared: Teams View Model DestroyedS");
+        super.onCleared();
+    }
+
     public TeamsViewModel() {
         repo = Repository.getInstance();
-        repo.refreshTeamList();
+        repo.refreshData();
 
     }
 
